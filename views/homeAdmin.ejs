@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<style>
+    .h1 {
+        font-size: 22px;
+        letter-spacing: 0.5px;
+        font-weight: bold;
+        font-family: 'Donegal One', serif;
+        color: black;
+    }
+    
+    .items {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        z-index: 2;
+        background: linear-gradient( 40deg, transparent, rgb(222 225 221), rgb(239 239 239), rgb(236 236 236));
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .item:hover {
+        color: green;
+    }
+    
+    .item {
+        cursor: pointer;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        color: rgb(34, 122, 7);
+        font-weight: bold;
+    }
+    
+    .bgname {
+        border-radius: 5px;
+        margin: 2px;
+        padding: 5px;
+        letter-spacing: 0.7px;
+        color: #043604;
+    }
+    
+    .dateTime {
+        color: rgb(156, 153, 153);
+    }
+    
+    .bgSet {
+        border: none;
+        background-color: #e8e8e8;
+        box-shadow: 0px 0px 1px rgb(21 85 122);
+    }
+    
+    .pageNumbering {
+        display: flex;
+        flex-wrap: wrap;
+        flex-flow: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 100px;
+    }
+    
+    .pageCount {
+        text-decoration: none;
+        padding-left: 4px;
+        padding-right: 4px;
+        border-radius: 2px;
+        margin: 3px;
+        color: rgb(0, 0, 0);
+        border: 1px solid grey;
+    }
+    
+    @media only screen and (max-width:400px) {
+        .h1 {
+            font-size: 17px;
+        }
+        .bgname {
+            font-size: 12px;
+        }
+        .dateTime {
+            font-size: 12px;
+        }
+        .mx-5 {
+            margin: 0.5rem !important;
+        }
+        .pageNumbering {
+            padding: 5px;
+        }
+    }
+    
+    @media only screen and ( max-width:600px) and ( min-width:401px) {
+        .h1 {
+            font-size: 17px;
+        }
+        .bgname {
+            font-size: 12px;
+        }
+        .dateTime {
+            font-size: 12px;
+        }
+        .mx-5 {
+            margin: 0.5rem !important;
+        }
+        .pageNumbering {
+            padding: 5px;
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                <img>
+            </a>
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <%if(name=="home") {%>
+                    <li>
+                        <div class="nav-link px-2 link-secondary bg-primary " style="color: white;">Admin Home</div>
+                    </li>
+                    <li><a href="/updates" class="nav-link px-2 link-secondary ">Updates</a></li>
+                    <%} else{ %>
+                        <li><a href="/" class="nav-link px-2 link-secondary">Admin Home</a></li>
+                        <li>
+                            <div class="nav-link px-2 link-secondary bg-primary " style="color: white;">Updates</div>
+                        </li>
+                        <% } %>
+            </ul>
+            <div class="col-md-3 text-end">
+
+
+            </div>
+
+        </header>
+    </div>
+
+    <div class="list-group mx-5">
+        <% for(var i=0;i<json_list.length;i++) {
+            var articlePath=""
+            if(name=="home")
+       articlePath=`/preview/${json_list[i]._id}`
+        else
+         articlePath=`/previewForUpdate/${json_list[i]._id}`
+
+        %>
+            <a href="<%=articlePath%>" class="list-group-item list-group-item-action flex-column align-items-start mb-3
+        bgSet">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1 h1">
+                        <%=json_list[i].title  %>
+                    </h5>
+                    <small class="dateTime"> <%=json_list[i].dateTime %></small>
+                </div>
+
+                <small class="bgname"><%=json_list[i].userName %> </small>
+            </a>
+
+            <% } %>
+
+    </div>
+    <div class="pageNumbering">
+        <%for(var i=1;i<=size;i++) {
+        var path=`/page/${i}`
+        if(current==i){
+        %>
+            <div class="pageCount" style="background: rgb(195, 235, 162);">
+                <%=i%>
+            </div>
+            <% } else{ %>
+
+                <a href="<%=path %>" class="pageCount">
+                    <%= i  %>
+                </a>
+                <%} } %>
+
+    </div>
+
+
+
+
+
+</body>
+
+</html>

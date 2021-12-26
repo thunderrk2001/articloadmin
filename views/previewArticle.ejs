@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    .image {
+        display: block;
+        margin: auto;
+        max-width: 70%;
+        height: auto;
+        width: auto/9;
+        padding: 20px;
+        border-radius: 30px;
+    }
+    
+    .main {
+        display: flex;
+        flex-wrap: wrap;
+        flex-flow: row;
+        word-wrap: break-word;
+        width: 100%;
+        justify-content: space-evenly !important;
+        align-items: center;
+    }
+    
+    .space {
+        display: block;
+        width: 100px !important;
+        height: 100px !important;
+    }
+    
+    .title {
+        display: flex;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        padding: 0px 50px;
+        font-family: 'Lato', sans-serif;
+        font-size: 60px;
+        font-weight: bold;
+    }
+    
+    .ele {
+        display: block;
+        width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    .content {
+        display: flex;
+        padding: 0px;
+        width: 100%;
+        line-height: 2.2;
+        flex-flow: wrap;
+        justify-content: center;
+        word-wrap: break-word;
+        flex-wrap: wrap;
+        font-family: "Lora", serif
+    }
+    
+    @media only screen and (max-width:600px) {
+        .ele {
+            margin: auto;
+            width: 100% !important;
+        }
+        .space {
+            display: block;
+            width: 10px !important;
+            height: 100px !important;
+        }
+        .title {
+            font-size: 30px;
+        }
+        .image {
+            padding: 2px;
+            max-width: 100%;
+        }
+    }
+    
+    @media only screen and (max-width:1050px) {
+        .main {
+            width: fit-content;
+        }
+        .title {
+            font-size: 35px;
+        }
+        .content {
+            width: fit-content;
+            font-family: 'Lora', serif;
+        }
+        .ele {
+            max-width: 100% !important;
+            margin: auto !important;
+        }
+        .space {
+            display: block;
+            width: 50px !important;
+            height: 100px !important;
+        }
+    }
+    
+    .flex2 {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        border-radius: 10px;
+        padding: 5px;
+        background-color: rgb(232, 238, 248);
+    }
+    
+    .flex3 {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .flex {
+        display: flex;
+        position: sticky;
+        top: 0px;
+        flex-direction: column;
+        margin: 0px;
+        align-items: center;
+    }
+    
+    #errorMess {
+        color: red;
+        margin-bottom: 5px;
+    }
+    
+    #textArea2 {
+        position: sticky;
+        width: 80% !important;
+    }
+</style>
+
+<body>
+
+    <div class="flex">
+        <div class="flex2">
+            <button type="button" id="save-btn" data-uid="<%=id%>" class="btn btn-primary bg-success btn-lg btn-block">Save</button>
+            <button type="button" id="reject-btn" class="btn btn-secondary bg-danger btn-lg btn-block">Reject</button>
+        </div>
+        <div class="flex3" id="textArea">
+            <div class="form-floating mx-2" id="textArea2">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                <label for="floatingTextarea">Rejection Message</label>
+            </div>
+            <div id="errorMess"></div>
+            <button type="button" id="Confirm-reject-btn" class="btn btn-secondary bg-danger btn-lg btn-block">Confirm Reject</button>
+        </div>
+
+    </div>
+
+    <div class="title">
+        <%= json_res.title %>
+    </div>
+    <div class="main">
+
+        <div class="space"></div>
+        <div class="content">
+            <div class="ele">
+                <%-json_res.article  %>
+            </div>
+
+        </div>
+        <div class="space"></div>
+
+    </div>
+    <div class="he" style="height: 1000px;"></div>
+    <script type="text/javascript" src="/previewArticle.js"></script>
+</body>
+
+</html>
